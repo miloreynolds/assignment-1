@@ -26,21 +26,17 @@ public class VigenereCipher {
     } else {
       int base = 97;
       int length = message.length();
-      
       //Create character array to store encoded message
       char[] messArray = new char[length];
       //Modify key to be length of the message
       String wholeKey = new String(createKey(key, length));
-      
       //Loop through/decode each character in message
       for (int i = 0; i < length; i++) {
         //Rebase characters so a=0
         int messNum = ((int) message.charAt(i)) - base;
         int keyNum = ((int) wholeKey.charAt(i)) - base;
-        
         //Encode character(and wrap around, if necessary)  
-        int encNum = (messNum + keyNum) % 26;
-        
+        int encNum = (messNum + keyNum) % 26;     
         //Insert into encoded message array
         messArray[i] = (char) (encNum + base);
       }
@@ -57,19 +53,16 @@ public class VigenereCipher {
       pen.println(message);
     } else {
       int base = 97;
-      int length = message.length();
-      
+      int length = message.length();      
       //Create character array to store decoded message
       char[] messArray = new char[length];
       //Modify key to be the length of the message
-      String wholeKey = new String(createKey(key, length));
-      
+      String wholeKey = new String(createKey(key, length));      
       //Loop through/decode each character in message
       for (int i = 0; i < length; i++) {
         //Rebase characters so a=0
         int messNum = ((int) message.charAt(i)) - base;
-        int keyNum = ((int) wholeKey.charAt(i)) - base;
-        
+        int keyNum = ((int) wholeKey.charAt(i)) - base;        
         //Decode character(and wrap around, if necessary) 
         int decNum = (messNum - keyNum + 26) % 26;
         messArray[i] = (char) (decNum + base);
@@ -82,8 +75,7 @@ public class VigenereCipher {
 
   public static String createKey(String key, int length) {
     //Create array to house modified key
-    char[] wholeKeyword = new char[length];
-    
+    char[] wholeKeyword = new char[length];    
     //Repeat keyword until specified length is reached
     for (int i = 0; i < length; i++) {
       wholeKeyword[i] = key.charAt(i % key.length());
