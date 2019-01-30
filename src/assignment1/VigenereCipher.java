@@ -4,20 +4,38 @@ import java.io.PrintWriter;
 public class VigenereCipher {
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.err, true);
+    String instruction = args[0];
     if (args.length != 3) {
       pen.println("Incorrect number of parameters");
-      System.exit(1);
-    } else if (args[0].equals("encode")) {
+      System.exit(2);
+    } else if (instruction.equals("encode")) {
+      checkMessage(args[1]);
+      checkMessage(args[2]);
       encode(args[1], args[2]);
-    } else if (args[0].equals("decode")) {
+    } else if (instruction.equals("decode")) {
+      checkMessage(args[1]);
+      checkMessage(args[2]);
       decode(args[1], args[2]);
     } else {
       pen.println("Valid options are \"encode\" or \"decode\"");
-      System.exit(2);
+      System.exit(1);
     }
     pen.flush();
   }// main(String[])
 
+  public static void checkMessage(String message) {
+    PrintWriter pen = new PrintWriter(System.err, true);
+    // Check to see that there are no whitespace or uppercase
+    for (int i = 0; i < message.length(); i++) {
+      char character = message.charAt(i);
+      //If invalid character encountered, print error message and exit
+      if (Character.isWhitespace(character) || Character.isUpperCase(character)) {
+        pen.println("Messages must be only lowercase and without whitespace");
+        System.exit(1);
+      }
+    }
+  }// checkMessage(String)
+  
   public static void encode(String message, String key) {
     PrintWriter pen = new PrintWriter(System.out, true);
     //If key is the empty string, return message as it is
