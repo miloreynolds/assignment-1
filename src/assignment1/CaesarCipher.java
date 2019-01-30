@@ -2,6 +2,15 @@ package assignment1;
 import java.io.PrintWriter;
 
 public class CaesarCipher {
+  /**
+  * Encodes and decodes messages by using the Caesar Cipher method
+  *
+  * @param args the strings typed on the command line 
+  * @throws - error with code 1 if instruction is not "encode"
+  *           or "decode" or if message has uppercase or whitespace
+  *           characters
+  *         - error with code 2 if there are not exactly 2 arguments
+  */
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.err, true);
     String instruction = args[0];
@@ -23,13 +32,21 @@ public class CaesarCipher {
     pen.flush();
   } // main(String[])
 
+  /**
+   * Checks if given string has uppercase or whitespace characters
+   *
+   * @param message the string to check for errors
+   * @throws error with code 1 if message consists of whitespace,
+   *         is not a letter, or is uppercase
+   */
   public static void checkMessage(String message) {
     PrintWriter pen = new PrintWriter(System.err, true);
     // Check to see that there are no whitespace or uppercase
     for (int i = 0; i < message.length(); i++) {
       char character = message.charAt(i);
       //If invalid character encountered, print error message and exit
-      if (Character.isWhitespace(character) || Character.isUpperCase(character)) {
+      if (!Character.isLetter(character) || Character.isWhitespace(character) 
+          || Character.isUpperCase(character)) {
         pen.println("Message must be only lowercase and without whitespace");
         System.exit(1);
       }
@@ -37,6 +54,12 @@ public class CaesarCipher {
     pen.flush();
   }// checkMessage(String)
 
+  /**
+   * Encodes the given message by shifting characters for each
+   * value of 0 <= n < 26 and displays all possible shifts.
+   *
+   * @param message the string to encode
+   */
   public static void encode(String message) {
     PrintWriter pen = new PrintWriter(System.out, true);
     int base = 97;
@@ -60,6 +83,12 @@ public class CaesarCipher {
     }
   }// encode (String)
 
+  /**
+   * Decodes the given message by shifting characters for each
+   * value of 0 <= n < 26 and displays all possible shifts.
+   *
+   * @param message the string to decode
+   */
   public static void decode(String message) {
     PrintWriter pen = new PrintWriter(System.out, true);
     int base = 97;
