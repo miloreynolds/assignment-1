@@ -114,9 +114,3 @@ public class CaesarCipher {
 
 }
 
-/*
- * Citations: https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java
- * https://stackoverflow.com/questions/21197737/what-is-the-point-of-system-err
- * https://www.geeksforgeeks.org/character-iswhitespace-method-in-java-with-examples/
- * https://www.tutorialspoint.com/java/character_isuppercase.htm
- */
